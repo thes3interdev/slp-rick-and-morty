@@ -1,0 +1,74 @@
+name: Checkout, Build and Deploy Functions and Hosting Project to Firebase
+
+on:
+  push:
+    branches: main
+
+jobs:
+  functions-build-deploy:
+    name: Build and Deploy Functions to Firebase
+    runs-on: ubuntu-latest
+
+    env:
+      working-directory: ./functions
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 16 and install dependencies
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: npm install
+        working-directory: ${{ env.working-directory }}
+
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only functions
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+  hosting-build:
+    name: Build Production Artifact
+    needs: functions-build-deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: .next
+          path: .next
+
+  hosting-deploy:
+    name: Deploy Production Artifact to Firebase
+    needs: hosting-build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: .next
+          path: .next
+
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
