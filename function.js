@@ -10,6 +10,6 @@ const server = next({
 
 const nextjsHandle = server.getRequestHandler();
 
-exports.nextServer = functions.region('europe-west1').https.onRequest((req, res) => {
+exports.nextServer = functions.region('us-central1').https.onRequest((req, res) => {
 	return server.prepare().then(() => nextjsHandle(req, res));
 });
