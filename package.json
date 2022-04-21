@@ -1,13 +1,14 @@
 {
 	"name": "slp-rick-and-morty",
 	"version": "1.0.0",
-	"private": true,
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"deploy": "yarn build && cross-env NODE_ENV=production firebase deploy --only functions,hosting"
 	},
+	"main": "function.js",
 	"dependencies": {
 		"@apollo/client": "^3.5.10",
 		"firebase-admin": "^10.0.2",
@@ -33,5 +34,6 @@
 	},
 	"author": {
 		"name": "Michael Owuor"
-	}
+	},
+	"license": "MIT"
 }
