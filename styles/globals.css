@@ -11,6 +11,12 @@
 	}
 
 	body {
-		@apply font-ubuntu text-slate-800 antialiased bg-slate-50;
+		@apply bg-slate-50 font-ubuntu text-slate-800 antialiased;
+	}
+}
+
+@layer components {
+	.center-on-screen {
+		@apply flex h-screen items-center justify-center;
 	}
 }
