@@ -4,7 +4,7 @@ import NavigationFooter from '../components/NavigationFooter';
 
 const Layout = ({ children }) => {
 	return (
-		<div className="mx-auto max-w-6xl">
+		<div className="mx-auto max-w-7xl">
 			<Meta />
 			<div className="flex h-screen flex-col">
 				<NavigationHeader />

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { gql } from '@apollo/client';
 import client from '../utilities/ApolloClient';
 import GET_CHARACTERS from '../graphql/queries/GetCharacters';
 import Meta from '../utilities/Meta';
