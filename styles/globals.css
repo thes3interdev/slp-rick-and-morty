@@ -11,7 +11,7 @@
 	}
 
 	body {
-		@apply bg-slate-50 font-ubuntu text-slate-800 antialiased;
+		@apply bg-slate-50 font-ubuntu text-slate-500 antialiased;
 	}
 }
 
