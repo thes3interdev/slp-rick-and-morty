@@ -14,10 +14,10 @@ const DisplayCharacterCard = ({ characters }) => {
 							alt={character.name}
 							className="bg-center object-cover object-center"
 						/>
-						<h4 className="text-center text-lg">{character.name}</h4>
-						<div>
-							<p className="text-center">Origin: {character.origin.name}</p>
-							<p className="text-center">Location: {character.location.name}</p>
+						<h4 className="text-center text-lg font-semibold">{character.name}</h4>
+						<div className="pb-4 text-center">
+							<p>Origin: {character.origin.name}</p>
+							<p>Location: {character.location.name}</p>
 						</div>
 					</div>
 				);

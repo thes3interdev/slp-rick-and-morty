@@ -9,7 +9,7 @@ export default function Home(results) {
 	const [characters, setCharacters] = useState(initialState.characters);
 
 	return (
-		<div className="">
+		<div>
 			<Meta title="Home | The Rick and Morty API | Superior Software Solutions" />
 			<DisplayCharacterCard characters={characters} />
 		</div>
