@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { gql } from '@apollo/client';
 import client from '../utilities/ApolloClient';
+import GET_CHARACTERS from '../graphql/queries/GetCharacters';
 import Meta from '../utilities/Meta';
 
 export default function Home(results) {
@@ -18,34 +19,7 @@ export default function Home(results) {
 
 export const getStaticProps = async () => {
 	const { data } = await client.query({
-		query: gql`
-			query {
-				characters(page: 1) {
-					info {
-						count
-						pages
-					}
-					results {
-						id
-						name
-						location {
-							id
-							name
-						}
-						origin {
-							id
-							name
-						}
-						episode {
-							id
-							episode
-							air_date
-						}
-						image
-					}
-				}
-			}
-		`,
+		query: GET_CHARACTERS,
 	});
 
 	return {
